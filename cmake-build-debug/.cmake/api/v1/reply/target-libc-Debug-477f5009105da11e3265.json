@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "liblibb.a"
+			"path" : "liblibc.a"
 		}
 	],
 	"backtrace" : 1,
@@ -25,7 +25,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 13,
 				"parent" : 0
 			}
 		]
@@ -36,7 +36,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -v -stdlib=libc++ -fuse-ld=lld -g -fcolor-diagnostics"
+					"fragment" : " -v  -g -fcolor-diagnostics"
 				},
 				{
 					"fragment" : "-std=gnu++17"
@@ -57,9 +57,9 @@
 			]
 		}
 	],
-	"id" : "libb::@6890427a1f51a3e7e1df",
-	"name" : "libb",
-	"nameOnDisk" : "liblibb.a",
+	"id" : "libc::@6890427a1f51a3e7e1df",
+	"name" : "libc",
+	"nameOnDisk" : "liblibc.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -80,7 +80,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "libb_bar.cpp",
+			"path" : "libc_bar.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

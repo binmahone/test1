@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.24"
+						"string" : "3.20"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -43,21 +43,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "libb::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-libb-Debug-f8f1b798db87af6f5856.json",
+					"jsonFile" : "target-libb-Debug-59c4b30a8b19b579fd83.json",
 					"name" : "libb",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "libc::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-libc-Debug-5ca82ab0ccaf2bf72f09.json",
+					"jsonFile" : "target-libc-Debug-477f5009105da11e3265.json",
 					"name" : "libc",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "test1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test1-Debug-0f073a5acdffd9838e19.json",
+					"jsonFile" : "target-test1-Debug-50aa1a028c07d1982da4.json",
 					"name" : "test1",
 					"projectIndex" : 0
 				}

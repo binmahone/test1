@@ -1,0 +1,10 @@
+digraph "-ldl" {
+node [
+  fontsize = "12"
+];
+    "node1" [ label = "-ldl", shape = septagon ];
+    "node0" [ label = "libb", shape = octagon ];
+    "node0" -> "node1" [ style = dotted ] // libb -> -ldl
+    "node4" [ label = "test1", shape = egg ];
+    "node4" -> "node0" [ style = dotted ] // test1 -> libb
+}

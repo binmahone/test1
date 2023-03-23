@@ -41,35 +41,39 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/hongbin/CLionProjects/test1/cmake-build-debug/
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target libb
+# Object build statements for SHARED_LIBRARY target libb
 
 
 #############################################
 # Order-only phony target for libb
 
-build cmake_object_order_depends_target_libb: phony || CMakeFiles/libb.dir
+build cmake_object_order_depends_target_libb: phony || cmake_object_order_depends_target_libc
 
 build CMakeFiles/libb.dir/libb_bar.cpp.o: CXX_COMPILER__libb_Debug /home/hongbin/CLionProjects/test1/libb_bar.cpp || cmake_object_order_depends_target_libb
+  DEFINES = -Dlibb_EXPORTS
   DEP_FILE = CMakeFiles/libb.dir/libb_bar.cpp.o.d
-  FLAGS = -v -stdlib=libc++ -fuse-ld=lld -g -fcolor-diagnostics -std=gnu++17
+  FLAGS = -v  -g -fPIC -fcolor-diagnostics -std=gnu++17
   OBJECT_DIR = CMakeFiles/libb.dir
   OBJECT_FILE_DIR = CMakeFiles/libb.dir
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target libb
+# Link build statements for SHARED_LIBRARY target libb
 
 
 #############################################
-# Link the static library liblibb.a
+# Link the shared library liblibb.so
 
-build liblibb.a: CXX_STATIC_LIBRARY_LINKER__libb_Debug CMakeFiles/libb.dir/libb_bar.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -v -stdlib=libc++ -fuse-ld=lld -g
+build liblibb.so: CXX_SHARED_LIBRARY_LINKER__libb_Debug CMakeFiles/libb.dir/libb_bar.cpp.o | /data0/hongbin/code/ClickHouse/cmake-build-release/contrib/jemalloc-cmake/lib_jemalloc.a liblibc.a || liblibc.a
+  LANGUAGE_COMPILE_FLAGS = -v  -g
+  LINK_LIBRARIES = /data0/hongbin/code/ClickHouse/cmake-build-release/contrib/jemalloc-cmake/lib_jemalloc.a  -lpthread  -ldl  liblibc.a
   OBJECT_DIR = CMakeFiles/libb.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = liblibb.a
-  TARGET_PDB = libb.a.dbg
+  SONAME = liblibb.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_FILE = liblibb.so
+  TARGET_PDB = libb.so.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target libc
@@ -82,7 +86,7 @@ build cmake_object_order_depends_target_libc: phony || CMakeFiles/libc.dir
 
 build CMakeFiles/libc.dir/libc_bar.cpp.o: CXX_COMPILER__libc_Debug /home/hongbin/CLionProjects/test1/libc_bar.cpp || cmake_object_order_depends_target_libc
   DEP_FILE = CMakeFiles/libc.dir/libc_bar.cpp.o.d
-  FLAGS = -v -stdlib=libc++ -fuse-ld=lld -g -fcolor-diagnostics -std=gnu++17
+  FLAGS = -v  -g -fcolor-diagnostics -std=gnu++17
   OBJECT_DIR = CMakeFiles/libc.dir
   OBJECT_FILE_DIR = CMakeFiles/libc.dir
 
@@ -95,7 +99,7 @@ build CMakeFiles/libc.dir/libc_bar.cpp.o: CXX_COMPILER__libc_Debug /home/hongbin
 # Link the static library liblibc.a
 
 build liblibc.a: CXX_STATIC_LIBRARY_LINKER__libc_Debug CMakeFiles/libc.dir/libc_bar.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -v -stdlib=libc++ -fuse-ld=lld -g
+  LANGUAGE_COMPILE_FLAGS = -v  -g
   OBJECT_DIR = CMakeFiles/libc.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -109,11 +113,11 @@ build liblibc.a: CXX_STATIC_LIBRARY_LINKER__libc_Debug CMakeFiles/libc.dir/libc_
 #############################################
 # Order-only phony target for test1
 
-build cmake_object_order_depends_target_test1: phony || cmake_object_order_depends_target_libb cmake_object_order_depends_target_libc
+build cmake_object_order_depends_target_test1: phony || cmake_object_order_depends_target_libb
 
 build CMakeFiles/test1.dir/main.cpp.o: CXX_COMPILER__test1_Debug /home/hongbin/CLionProjects/test1/main.cpp || cmake_object_order_depends_target_test1
   DEP_FILE = CMakeFiles/test1.dir/main.cpp.o.d
-  FLAGS = -v -stdlib=libc++ -fuse-ld=lld -g -fcolor-diagnostics -std=gnu++17
+  FLAGS = -v  -g -fcolor-diagnostics -std=gnu++17
   OBJECT_DIR = CMakeFiles/test1.dir
   OBJECT_FILE_DIR = CMakeFiles/test1.dir
 
@@ -125,10 +129,9 @@ build CMakeFiles/test1.dir/main.cpp.o: CXX_COMPILER__test1_Debug /home/hongbin/C
 #############################################
 # Link the executable test1
 
-build test1: CXX_EXECUTABLE_LINKER__test1_Debug CMakeFiles/test1.dir/main.cpp.o | liblibc.a liblibb.a /usr/lib/x86_64-linux-gnu/libjemalloc.a || liblibb.a liblibc.a
-  FLAGS = -v -stdlib=libc++ -fuse-ld=lld -g
-  LINK_FLAGS = -stdlib=libc++ -lc++abi -lpthread -ldl
-  LINK_LIBRARIES = liblibc.a  liblibb.a  /usr/lib/x86_64-linux-gnu/libjemalloc.a
+build test1: CXX_EXECUTABLE_LINKER__test1_Debug CMakeFiles/test1.dir/main.cpp.o | liblibb.so || liblibb.so
+  FLAGS = -v  -g
+  LINK_LIBRARIES = -Wl,-rpath,/home/hongbin/CLionProjects/test1/cmake-build-debug  liblibb.so
   OBJECT_DIR = CMakeFiles/test1.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -140,8 +143,9 @@ build test1: CXX_EXECUTABLE_LINKER__test1_Debug CMakeFiles/test1.dir/main.cpp.o 
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/hongbin/CLionProjects/test1/cmake-build-debug && /snap/clion/229/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
+  COMMAND = cd /home/hongbin/CLionProjects/test1/cmake-build-debug && /usr/local/bin/ccmake -S/home/hongbin/CLionProjects/test1 -B/home/hongbin/CLionProjects/test1/cmake-build-debug
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build edit_cache: phony CMakeFiles/edit_cache.util
@@ -161,7 +165,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build libb: phony liblibb.a
+build libb: phony liblibb.so
 
 build libc: phony liblibc.a
 
@@ -173,7 +177,7 @@ build libc: phony liblibc.a
 #############################################
 # Folder: /home/hongbin/CLionProjects/test1/cmake-build-debug
 
-build all: phony liblibb.a liblibc.a test1
+build all: phony liblibb.so liblibc.a test1
 
 # =============================================================================
 # Built-in targets
