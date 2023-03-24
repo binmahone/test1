@@ -11,7 +11,6 @@ find_package(Boost REQUIRED COMPONENTS
         system filesystem regex context program_options thread)
 
 add_library(libb SHARED libb_bar.cpp)
-add_library(libc STATIC libc_bar.cpp)
 
 add_executable(test1 main.cpp )
 
@@ -19,7 +18,6 @@ add_library(jemalloc STATIC IMPORTED)
 set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /data0/hongbin/code/ClickHouse/cmake-build-release/contrib/jemalloc-cmake/lib_jemalloc.a)
 target_link_libraries(libb PRIVATE jemalloc)
 target_link_libraries(libb PRIVATE -lpthread -ldl)
-target_link_libraries(libb PRIVATE libc)
 target_compile_options(libb PRIVATE -fPIC)
 
 target_link_libraries(test1 PRIVATE -ldl)

@@ -7,10 +7,13 @@
 #include <malloc.h>
 
 int liba_v_foo;
-extern int yyy();
+
+void sdallocx(void *ptr, size_t size, int flags) __attribute__((weak)) {
+    std::cout << "hello";
+}
 
 int func() {
-    int mm = yyy();
+
     void *  x= malloc(100000000);
     memset(x,1,100000000);
     long sum = 0;
@@ -20,9 +23,8 @@ int func() {
         sum+=p[i];
     }
     std::cout << "in libb_bar:"<<sum << std::endl;
-    free(x);
-
-
+    sdallocx(x,100000000,0);
+//    free(x);
 
 
     return sum;

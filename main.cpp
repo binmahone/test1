@@ -53,7 +53,7 @@ int main() {
     printf("Number of bytes in use: %d\n", minfo.arena);
 
 
-//    free(x);
+    free(x);
 
 
 //    path p{"/tmp/cachelib"};
