@@ -14,13 +14,16 @@ add_library(libb SHARED libb_bar.cpp)
 
 add_executable(test1 main.cpp )
 
-add_library(jemalloc STATIC IMPORTED)
-set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /data0/hongbin/code/ClickHouse/cmake-build-release/contrib/jemalloc-cmake/lib_jemalloc.a)
-target_link_libraries(libb PRIVATE jemalloc)
+#add_library(jemalloc SHARED IMPORTED)
+#set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /data0/hongbin/code/ClickHouse/cmake-build-release/contrib/jemalloc-cmake/lib_jemalloc.a)
+#set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /usr/lib/x86_64-linux-gnu/libjemalloc.so)
+#target_link_libraries(libb PRIVATE jemalloc)
 target_link_libraries(libb PRIVATE -lpthread -ldl)
 target_compile_options(libb PRIVATE -fPIC)
 
 target_link_libraries(test1 PRIVATE -ldl)
+
+#target_link_libraries(test1 PRIVATE libb)
 
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -fuse-ld=lld")

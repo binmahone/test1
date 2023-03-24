@@ -8,9 +8,8 @@
 
 int liba_v_foo;
 
-void sdallocx(void *ptr, size_t size, int flags) __attribute__((weak)) {
-    std::cout << "hello";
-}
+extern "C" void sdallocx(void *ptr, size_t size, int flags);
+extern "C" void dallocx(void *ptr, int flags);
 
 int func() {
 
@@ -23,7 +22,8 @@ int func() {
         sum+=p[i];
     }
     std::cout << "in libb_bar:"<<sum << std::endl;
-    sdallocx(x,100000000,0);
+    dallocx(x,0);
+
 //    free(x);
 
 
