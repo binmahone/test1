@@ -26,7 +26,7 @@ target_compile_options(libb PRIVATE -fPIC)
 
 target_link_libraries(test1 PRIVATE -ldl)
 
-#target_link_libraries(test1 PRIVATE libb)
+target_link_libraries(test1 PRIVATE libb)
 
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -fuse-ld=lld")

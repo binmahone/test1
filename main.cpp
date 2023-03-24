@@ -19,29 +19,29 @@ int main() {
 
 
     {
-//        func();
+        func();
 
 
-        char *error;
-        void *libHandle;
-        int (*func)(void);
-
-        // open the library
-        libHandle = dlopen("./liblibb.so", RTLD_LAZY);
-        if (!libHandle) {
-            std::cerr << "Cannot open library: " << dlerror() << std::endl;
-            return 1;
-        }
-
-// load the symbol
-        func = (int (*)(void)) dlsym(libHandle, "_Z4funcv");
-        if ((error = dlerror()) != NULL) {
-            std::cerr << "Cannot load symbol 'cosine': " << error << std::endl;
-            return 1;
-        }
-
-// use it to do the calculation
-        std::cout << "func() = " << (*func)() << std::endl;
+//        char *error;
+//        void *libHandle;
+//        int (*func)(void);
+//
+//        // open the library
+//        libHandle = dlopen("./liblibb.so", RTLD_LAZY);
+//        if (!libHandle) {
+//            std::cerr << "Cannot open library: " << dlerror() << std::endl;
+//            return 1;
+//        }
+//
+//// load the symbol
+//        func = (int (*)(void)) dlsym(libHandle, "_Z4funcv");
+//        if ((error = dlerror()) != NULL) {
+//            std::cerr << "Cannot load symbol 'cosine': " << error << std::endl;
+//            return 1;
+//        }
+//
+//// use it to do the calculation
+//        std::cout << "func() = " << (*func)() << std::endl;
 
     }
 
