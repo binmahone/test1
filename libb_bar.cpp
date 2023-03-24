@@ -14,6 +14,8 @@ extern "C" void dallocx(void *ptr, int flags);
 int func() {
 
     void *  x= malloc(100000000);
+
+    //do some meaningless stuff with the malloced mem
     memset(x,1,100000000);
     long sum = 0;
     int* p = static_cast<int*>(x);
@@ -21,7 +23,8 @@ int func() {
     {
         sum+=p[i];
     }
-    std::cout << "in libb_bar:"<<sum << std::endl;
+    std::cout << "sum: "<<sum << std::endl;
+
     dallocx(x,0);
 
 //    free(x);

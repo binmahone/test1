@@ -8,6 +8,8 @@ extern int func();
 extern int yyy();
 
 int main() {
+
+    // meaningless code to consume malloc/free interface in main()
     void *x = malloc(100000000);
     memset(x, 1, 100000000);
     long sum = 0;

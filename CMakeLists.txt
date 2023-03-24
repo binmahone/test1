@@ -7,8 +7,8 @@ project(test1)
 set(CMAKE_CXX_STANDARD 17)
 set(VERBOSE ON)
 
-find_package(Boost REQUIRED COMPONENTS
-        system filesystem regex context program_options thread)
+#find_package(Boost REQUIRED COMPONENTS
+#        system filesystem regex context program_options thread)
 
 add_library(libb SHARED libb_bar.cpp)
 
@@ -17,7 +17,7 @@ add_executable(test1 main.cpp )
 add_library(jemalloc STATIC IMPORTED)
 
 #change this absolute URL
-set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /data0/hongbin/code/ClickHouse/cmake-build-release/contrib/jemalloc-cmake/lib_jemalloc.a)
+set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /tmp/je/lib/libjemalloc_pic.a)
 
 #set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /usr/lib/x86_64-linux-gnu/libjemalloc.so)
 target_link_libraries(libb PRIVATE jemalloc)
