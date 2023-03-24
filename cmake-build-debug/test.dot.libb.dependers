@@ -1,8 +1,0 @@
-digraph "libb" {
-node [
-  fontsize = "12"
-];
-    "node0" [ label = "libb", shape = octagon ];
-    "node4" [ label = "test1", shape = egg ];
-    "node4" -> "node0" [ style = dotted ] // test1 -> libb
-}

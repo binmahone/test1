@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <malloc.h>
 
 int liba_v_foo;
 extern int yyy();
@@ -20,6 +21,9 @@ int func() {
     }
     std::cout << "in libb_bar:"<<sum << std::endl;
     free(x);
+
+
+
 
     return sum;
 }

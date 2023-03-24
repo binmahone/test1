@@ -1,3 +1,4 @@
+set( CMAKE_VERBOSE_MAKEFILE on )
 set_property(GLOBAL PROPERTY GLOBAL_DEPENDS_DEBUG_MODE 1)
 
 cmake_minimum_required(VERSION 3.20)
@@ -19,8 +20,9 @@ set_target_properties(jemalloc PROPERTIES IMPORTED_LOCATION /data0/hongbin/code/
 target_link_libraries(libb PRIVATE jemalloc)
 target_link_libraries(libb PRIVATE -lpthread -ldl)
 target_link_libraries(libb PRIVATE libc)
+target_compile_options(libb PRIVATE -fPIC)
 
-target_link_libraries(test1 libb)
+target_link_libraries(test1 PRIVATE -ldl)
 
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -fuse-ld=lld")
